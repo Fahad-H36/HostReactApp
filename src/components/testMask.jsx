@@ -7,7 +7,6 @@ async function loadModel() {
   const model = await tf.loadLayersModel(
     "https://fahadsmodel.s3.amazonaws.com/modeljs/model.json"
   );
-  console.log(model || "not found");
   return model;
 }
 

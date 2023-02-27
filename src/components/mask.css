@@ -1,5 +1,5 @@
 body {
-  background-color: rgba(24, 27, 29, 0.637);
+  background-color: rgb(27, 31, 34);
 }
 
 .container {
@@ -9,13 +9,14 @@ body {
   justify-content: center;
   align-items: center;
   padding-left: 30px;
-
+  border: 2px solid rgb(26, 173, 209);
   padding-right: 30px;
-  min-height: 100vh;
+  min-height: 95vh;
   background-color: rgb(27, 31, 34);
 }
 #browseBTN {
   margin-bottom: 15px;
+  background-color: transparent;
 }
 #imgDis {
   width: 300px;
@@ -24,12 +25,19 @@ body {
 }
 #submitBTN {
   margin-top: 10px;
-  border: 1px solid black;
+  border: 2px solid rgb(26, 173, 209);
+  color: rgb(26, 173, 209);
+  background-color: transparent;
+}
+#submitBTN:hover {
+  background-color: rgb(26, 173, 209);
+  color: white;
+  border: 2px solid white;
 }
 
 #infoField {
   margin-top: 5px;
-  color: rgb(255, 255, 255);
+  color: rgb(26, 173, 209);
   width: 300px;
   font-size: 2rem;
   animation: typing 2.5s steps(50, end) forwards;
@@ -62,11 +70,15 @@ input[type="file"] {
   padding: 12px 18px;
   margin-bottom: 15px;
   cursor: pointer;
-  border-radius: 5px;
-  background-color: #ffffff;
-  font-size: 16px;
+  border-radius: 7px;
+  background-color: transparent;
+  font-size: 15px;
   font-weight: bold;
-  color: #353333;
+  color: rgb(26, 173, 209);
+  border: 2px solid rgb(26, 173, 209);
 }
-/* input[type="file"] {
-} */
+.button:hover {
+  background-color: rgb(26, 173, 209);
+  color: white;
+  border: 2px solid white;
+}
