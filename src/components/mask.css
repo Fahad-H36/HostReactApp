@@ -5,9 +5,11 @@ body {
 .container {
   display: flex;
   flex-direction: column;
+  border-radius: 20px;
   justify-content: center;
   align-items: center;
   padding-left: 30px;
+
   padding-right: 30px;
   min-height: 100vh;
   background-color: rgb(27, 31, 34);
@@ -27,8 +29,44 @@ body {
 
 #infoField {
   margin-top: 5px;
-  resize: none;
+  color: rgb(255, 255, 255);
+  width: 300px;
+  font-size: 2rem;
+  animation: typing 2.5s steps(50, end) forwards;
+}
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
+input[type="file"] {
+  visibility: hidden;
+  position: absolute;
+  z-index: -1;
+  top: 10px;
+  left: 8px;
+  font-size: 17px;
+  color: #b8b8b8;
+}
+
+.button-wrap {
+  position: relative;
+}
+
+.button {
+  display: inline-block;
+  padding: 12px 18px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  color: #353333;
+}
 /* input[type="file"] {
 } */

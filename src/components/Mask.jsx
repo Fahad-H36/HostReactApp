@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useRef, useEffect } from "react";
+import { React, useState, useRef, useEffect } from "react";
 import "./mask.css";
 import * as tf from "@tensorflow/tfjs";
 
@@ -19,7 +18,6 @@ const Mask = () => {
 
   useEffect(() => {
     loadModel().then(setModel);
-    console.log(model);
   }, []);
 
   const handleImageUpload = (event) => {
@@ -41,8 +39,6 @@ const Mask = () => {
     // Crop the tensor to remove the padded zeros
     input = input.expandDims(0);
     // input = input.cast("float32");
-    console.log(input.print());
-    console.log(input.shape);
 
     // const imgArray = Array.from(input);
     // console.log(input);
@@ -59,19 +55,26 @@ const Mask = () => {
 
   return (
     <div className="container">
-      <input type="file" id="browseBTN" onChange={handleImageUpload} />
+      <div id="button-wrap">
+        <label className="button" htmlFor="browseBTN">
+          Upload File
+        </label>
+
+        <input type="file" id="browseBTN" onChange={handleImageUpload} />
+      </div>
       {/* <input type="file" id="browseBTN" onChange={handleImageUpload} /> */}
       <div className="imgDiv">
         {image && <img id="imgDis" src={image} alt="Uploaded image" />}
       </div>
       {/* Img display div ends here */}
-      <textarea
+      {/* <textarea
         disabled
         value={textVal}
         id="infoField"
         cols="39"
         rows="3"
-      ></textarea>
+      ></textarea> */}
+      <h1 id="infoField">{textVal}</h1>
       <div className="submitDiv">
         <button type="button" id="submitBTN" onClick={predict}>
           Process
