@@ -43,7 +43,7 @@ const Mask = () => {
     // const imgArray = Array.from(input);
     // console.log(input);
     // const img9 = tf.tensor(imgArray, [1, 150, 150, 3], "float32");
-
+    console.log(model);
     let prd = model.predict(input);
     prd = prd.dataSync()[0];
     if (prd > 0.5) {
