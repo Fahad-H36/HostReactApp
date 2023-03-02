@@ -33,22 +33,27 @@ const Mask = () => {
   async function predict() {
     let input = new Image();
     input.src = image;
+    console.log("getting here 1");
     // input = input.reshape([150, 150]);
     input = tf.browser.fromPixels(input).div(255.0);
     input = tf.image.resizeBilinear(input, [150, 150]);
+    console.log("getting here 2");
 
     // Crop the tensor to remove the padded zeros
     input = input.expandDims(0);
     // input = input.cast("float32");
+    console.log("getting here 3");
 
     // const imgArray = Array.from(input);
     // console.log(input);
     // const img9 = tf.tensor(imgArray, [1, 150, 150, 3], "float32");
     let model = loadModel();
     model.then(
-      function (res) {
+      (res) => {
         const pred = res.predict(input);
         let prd = pred.dataSync()[0];
+        console.log("getting here 4");
+
         if (prd > 0.5) {
           setTextVal("Mask Not Found");
         } else {
