@@ -48,11 +48,13 @@ const Mask = () => {
     // console.log(input);
     // const img9 = tf.tensor(imgArray, [1, 150, 150, 3], "float32");
     let model = loadModel();
+    console.log("getting here 4");
+
     model.then(
       (res) => {
         const pred = res.predict(input);
         let prd = pred.dataSync()[0];
-        console.log("getting here 4");
+        console.log("getting here 5");
 
         if (prd > 0.5) {
           setTextVal("Mask Not Found");
