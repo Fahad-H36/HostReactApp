@@ -1,4 +1,4 @@
-import { React, useState, useRef, useEffect } from "react";
+import { React, useState, useEffect } from "react";
 import "./mask.css";
 import * as tf from "@tensorflow/tfjs";
 
@@ -15,10 +15,11 @@ const Mask = () => {
   const [image, setImage] = useState(ima);
   const [textVal, setTextVal] = useState("Press Process");
   const [model, setModel] = useState("null");
+  const [prediction, setPrediction] = useState("null");
 
-  useEffect(() => {
-    loadModel().then(setModel);
-  }, []);
+  // useEffect(() => {
+  //   loadModel().then(setModel);
+  // }, []);
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -43,13 +44,21 @@ const Mask = () => {
     // const imgArray = Array.from(input);
     // console.log(input);
     // const img9 = tf.tensor(imgArray, [1, 150, 150, 3], "float32");
-    let prd = await model.predict(input);
-    prd = prd.dataSync()[0];
-    if (prd > 0.5) {
-      setTextVal("Mask Not Found");
-    } else {
-      setTextVal("Mask Found");
-    }
+    let model = loadModel();
+    model.then(
+      function (res) {
+        const pred = res.predict(input);
+        let prd = pred.dataSync()[0];
+        if (prd > 0.5) {
+          setTextVal("Mask Not Found");
+        } else {
+          setTextVal("Mask Found");
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
   }
 
   return (
