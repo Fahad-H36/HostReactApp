@@ -15,11 +15,10 @@ const Mask = () => {
   const [image, setImage] = useState(ima);
   const [textVal, setTextVal] = useState("Press Process");
   const [model, setModel] = useState("null");
-  const [prediction, setPrediction] = useState("null");
 
-  // useEffect(() => {
-  //   loadModel().then(setModel);
-  // }, []);
+  useEffect(() => {
+    loadModel().then(setModel);
+  }, []);
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -33,39 +32,18 @@ const Mask = () => {
   async function predict() {
     let input = new Image();
     input.src = image;
-    console.log("getting here 1");
-    // input = input.reshape([150, 150]);
     input = tf.browser.fromPixels(input).div(255.0);
     input = tf.image.resizeBilinear(input, [150, 150]);
-    console.log("getting here 2");
 
-    // Crop the tensor to remove the padded zeros
     input = input.expandDims(0);
-    // input = input.cast("float32");
-    console.log("getting here 3");
 
-    // const imgArray = Array.from(input);
-    // console.log(input);
-    // const img9 = tf.tensor(imgArray, [1, 150, 150, 3], "float32");
-    let model = loadModel();
-    console.log("getting here 4");
-
-    model.then(
-      (res) => {
-        const pred = res.predict(input);
-        let prd = pred.dataSync()[0];
-        console.log("getting here 5");
-
-        if (prd > 0.5) {
-          setTextVal("Mask Not Found");
-        } else {
-          setTextVal("Mask Found");
-        }
-      },
-      function (err) {
-        console.log(err);
-      }
-    );
+    let prd = await model.predict(input);
+    prd = prd.dataSync()[0];
+    if (prd > 0.5) {
+      setTextVal("Mask Not Found");
+    } else {
+      setTextVal("Mask Found");
+    }
   }
 
   return (
