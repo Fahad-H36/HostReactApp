@@ -38,6 +38,7 @@ const Mask = () => {
     input = input.expandDims(0);
 
     let prd = await model.predict(input);
+    console.log(prd.print);
     prd = prd.dataSync()[0];
     if (prd > 0.5) {
       setTextVal("Mask Not Found");
