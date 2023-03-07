@@ -40,7 +40,7 @@ body {
   color: rgb(26, 173, 209);
   width: 300px;
   font-size: 2rem;
-  animation: typing 2.5s steps(50, end) forwards;
+  /* animation: typing 2.5s steps(50, end) forwards; */
 }
 @keyframes typing {
   from {
