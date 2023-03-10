@@ -13,7 +13,7 @@ async function loadModel() {
 
 const Mask = () => {
   const [image, setImage] = useState(ima);
-  const [textVal, setTextVal] = useState("Press Process");
+  const [textVal, setTextVal] = useState("Press Process Button");
   const [model, setModel] = useState("null");
 
   useEffect(() => {
